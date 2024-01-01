@@ -10,7 +10,7 @@ int main () {
   for(int sine = 0; sine < 15; sine++){
    double data[18][9][2];
    int dataSize = 0;
-   cout << sine  << endl;
+   cout << "sine" << sine << endl;
    for(int file = 0; file <= 17; file++){
      ifstream inputFile;
      string inputFilePath;
@@ -88,26 +88,28 @@ int main () {
                  }
                 // cout << interpData[h][k + i * 11][0] << " "  << interpData[h][k + i * 11][1] << endl;
                  outputFile << interpDataP[h][k + i * 11][0] << " "  << interpDataP[h][k + i * 11][1] <<" " <<endl;
-                 cout << count << endl;
+                // cout << count << endl;
                  count ++;
             }
 
-         
+        cout << "P" << h << endl;
         }else{//Pの場合、
            for(int k = 0; k < 16; k++){
                 for(int j = 0; j < 2; j++){
                   diffData = (data[h][i + 1][j] - data[h][i][j]) / 16; //配列の隣同士の差分
                     if(j == 0){
-                      interpDataV[h][k + i * 16][j] = data[h][i][j] + diffData * k;
+                      interpDataV[h-9][k + i * 16][j] = data[h-9][i][j] + diffData * k;
                     }else{
-                      interpDataV[h][k + i * 16][j] = data[h][i][j] + diffData * k;
+                      interpDataV[h-9][k + i * 16][j] = data[h-9][i][j] + diffData * k;
                     }
                  }
                 // cout << interpData[h][k + i * 16][0] << " "  << interpData[h][k + i * 16][1] << endl;
-                 outputFile << interpDataV[h][k + i * 16][0] << " "  << interpDataV[h][k + i * 16][1] <<" " << endl;
-                 cout << count << endl;
+                 outputFile << interpDataV[h-9][k + i * 16][0] << " "  << interpDataV[h-9][k + i * 16][1] <<" " << endl;
+            //    cout << interpDataV[h][k + i * 16][0] << " "  << interpDataV[h][k + i * 16][1] <<" " << endl;
+              //   cout << count << endl;
                  count ++;
            }
+         cout << "V" << h -9 << endl;
         }
           //  cout << dataSize << endl;
       //   cout << "next" << endl;
@@ -122,7 +124,10 @@ int main () {
       outputFile.close();
    }
       // outputFile.close();
+
       cout << "nextSINE" << endl;
  }
+
+
  return 0;
 }
